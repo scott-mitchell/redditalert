@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"flag"
 	"log"
 	"strings"
@@ -18,11 +17,10 @@ var (
 )
 
 func main() {
-	ctx := context.Background()
 	flag.Parse()
 	glog.Infof("Starting...")
 
-	cfg, err := LoadConfig(ctx, *configFile)
+	cfg, err := LoadConfig(*configFile)
 	if err != nil {
 		glog.Fatalf("Failed to load config: %v", err)
 	}

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -23,7 +22,7 @@ type Config struct {
 	Filters         []Filter `json:"filters"`
 }
 
-func LoadConfig(ctx context.Context, file string) (*Config, error) {
+func LoadConfig(file string) (*Config, error) {
 	f, err := os.Open(file)
 	if err != nil {
 		return nil, fmt.Errorf("error opening config file %q: %v", file, err)
