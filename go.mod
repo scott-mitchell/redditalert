@@ -14,8 +14,8 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/turnage/redditproto v0.0.0-20151223012412-afedf1b6eddb // indirect
-	golang.org/x/net v0.0.0-20220615171555-694bf12d69de // indirect
-	golang.org/x/oauth2 v0.0.0-20220608161450-d0670ef3b1eb // indirect
+	golang.org/x/net v0.0.0-20220726230323-06994584191e // indirect
+	golang.org/x/oauth2 v0.0.0-20220722155238-128564f6959c // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
 )

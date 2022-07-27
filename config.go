@@ -16,10 +16,9 @@ type Filter struct {
 }
 
 type Config struct {
-	WebhookID       string   `json:"webhookID"`
-	WebhookToken    string   `json:"webhookToken"`
-	RedditUserAgent string   `json:"redditUserAgent"`
-	Filters         []Filter `json:"filters"`
+	WebhookID    string   `json:"webhookID"`
+	WebhookToken string   `json:"webhookToken"`
+	Filters      []Filter `json:"filters"`
 }
 
 func LoadConfig(file string) (*Config, error) {

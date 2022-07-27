@@ -7,5 +7,5 @@ RUN CGO_ENABLED=0 GOOS=linux go build .
 
 FROM gcr.io/distroless/static
 COPY --from=builder /usr/app/redditalert ./
-COPY config.json ./
+COPY config.json agent.yaml ./
 CMD ["./redditalert", "--logtostderr"]

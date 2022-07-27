@@ -2,7 +2,6 @@
     
     "webhookID": "ID from https://discord.com/api/webhooks/<ID>/<Token>",
     "webhookToken": "Token from https://discord.com/api/webhooks/<ID>/<Token>",
-    "redditUserAgent": "Distroless:RedditAlert:0.0.1 (u/reddit_username)",
     "filters": [
         {
             "name": "Memeshots Sale",

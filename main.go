@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"log"
+	"os"
 	"strings"
 	"time"
 
@@ -13,6 +14,7 @@ import (
 
 var (
 	configFile    = flag.String("config-file", "config.json", "The config file to load")
+	agentFile     = flag.String("agent-file", "agent.yaml", "The agent file to load")
 	pollingPeriod = flag.Duration("polling-period", 5*time.Minute, "The period to poll for new submissions and comments")
 )
 
@@ -40,16 +42,17 @@ func main() {
 	if err != nil {
 		glog.Fatalf("Failed to create alerter: %v", err)
 	}
-	script, err := reddit.NewScript(cfg.RedditUserAgent, *pollingPeriod)
+
+	bot, err := reddit.NewBotFromAgentFile(*agentFile, *pollingPeriod)
 	if err != nil {
 		glog.Fatalf("Failed to create Reddit script: %v", err)
 	}
 
 	glog.Infof("Starting scan...")
-	stop, wait, err := graw.Scan(alerter, script, graw.Config{
+	stop, wait, err := graw.Run(alerter, bot, graw.Config{
 		Subreddits:        subreddits,
 		SubredditComments: subreddits,
-		Logger:            log.Default(),
+		Logger:            log.New(os.Stderr, "[Graw]", log.LstdFlags),
 	})
 	if err != nil {
 		glog.Fatalf("Failed to start Reddit scan: %v", err)
