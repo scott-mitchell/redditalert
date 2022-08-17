@@ -169,7 +169,9 @@ func (a *Alerter) handleEvent(ctx context.Context, event redditEvent) error {
 		},
 	})
 	if err != nil {
-		return fmt.Errorf("error posting to discord webhook: %v", err)
+		// Errors propogate to the graw scan, stopping it. We don't want to
+		// stop scanning reddit for webhook errors, so only log the error.
+		glog.Errorf("Error posting to discord webhook: %v", err)
 	}
 	return nil
 }
