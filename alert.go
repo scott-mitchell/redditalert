@@ -115,13 +115,6 @@ func (a *Alerter) Comment(comment *reddit.Comment) error {
 	})
 }
 
-func truncate(s string, length int) string {
-	runes := []rune(s)
-	if len(runes) <= length {
-		return s
-	}
-	return string(runes[:length])
-}
 func (a *Alerter) handleEvent(ctx context.Context, event redditEvent) error {
 	ctx, cancel := context.WithTimeout(ctx, eventTimeout)
 	defer cancel()
@@ -150,8 +143,8 @@ func (a *Alerter) handleEvent(ctx context.Context, event redditEvent) error {
 	_, err := client.ExecuteAndWait(api.ExecuteWebhookData{
 		Embeds: []discord.Embed{
 			{
-				Title:       truncate(event.title, maxEmbedTitle),
-				Description: truncate(event.body, maxEmbedDescription),
+				Title:       event.title[:maxEmbedTitle],
+				Description: event.body[:maxEmbedDescription],
 				URL:         url,
 				Color:       discord.Color(redditOrange),
 				Author: &discord.EmbedAuthor{
