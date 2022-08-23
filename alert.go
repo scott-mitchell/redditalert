@@ -115,6 +115,13 @@ func (a *Alerter) Comment(comment *reddit.Comment) error {
 	})
 }
 
+func truncate(s string, length int) string {
+	if len(s) <= length {
+		return s
+	}
+	return s[:length]
+}
+
 func (a *Alerter) handleEvent(ctx context.Context, event redditEvent) error {
 	ctx, cancel := context.WithTimeout(ctx, eventTimeout)
 	defer cancel()
@@ -143,8 +150,8 @@ func (a *Alerter) handleEvent(ctx context.Context, event redditEvent) error {
 	_, err := client.ExecuteAndWait(api.ExecuteWebhookData{
 		Embeds: []discord.Embed{
 			{
-				Title:       event.title[:maxEmbedTitle],
-				Description: event.body[:maxEmbedDescription],
+				Title:       truncate(event.title, maxEmbedTitle),
+				Description: truncate(event.body, maxEmbedDescription),
 				URL:         url,
 				Color:       discord.Color(redditOrange),
 				Author: &discord.EmbedAuthor{
