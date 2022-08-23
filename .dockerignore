@@ -1,0 +1,8 @@
+.dockerignore
+.github/
+.vscode/
+redditalert
+LISCENSE
+README.md
+config.sample.json
+.git/
