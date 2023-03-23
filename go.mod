@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/diamondburned/arikawa v1.3.14
-	github.com/golang/glog v1.0.0
+	github.com/golang/glog v1.1.1
 	github.com/turnage/graw v0.0.0-20201204201853-a177df1b5c91
 	golang.org/x/oauth2 v0.4.0
 )
