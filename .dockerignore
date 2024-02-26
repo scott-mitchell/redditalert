@@ -6,3 +6,4 @@ LISCENSE
 README.md
 config.sample.json
 .git/
+.gitignore
